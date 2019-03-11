@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="/css/gridstack.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="./scripts/requests.js"></script>
+
+</head>
+<body>
+<h1></h1>
+<h1></h1>
+	<nav id="widgets_bar">
+	<ul class="menu">
+        <li>
+                <!-- STEAM WIDGETS -->
+                {{#if user.steam.id}}
+			<button class="btn btn-info btn-lg" data-toggle="modal" data-toggle="modal" data-target="#modalRecentlyPlayed">
+				Steam Rencently Played Games
+			</button>
+			<button class="btn btn-info btn-lg" data-toggle="modal" data-toggle="modal" data-target="#modalGetGame">
+				Steam Game Informations
+			</button>
+
+			<div id="modalRecentlyPlayed" class="modal fade front" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" id="close" class="btn btn-default" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Choose the index of the game to display</h4>
+						</div>
+						<div calss="modal-body">
+							<select id="indexGame" class="btn btn-default">
+								<option value="0">n°1</option>
+								<option value="1">n°2</option>
+								<option value="2">n°3</option>
+							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="button" onclick="createWidget('RecentlyPlayed')" class="btn btn-default" data-dismiss="modal">Create</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="modalGetGame" class="modal fade front" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" id="close" class="btn btn-default" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Enter the name of the game you want to display</h4>
+						</div>
+						<div calss="modal-body">
+							<input type="text" id="gameName" placeholder="Enter the name of your game">
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" onclick="createWidget('GetGame')" class="btn btn-default" data-dismiss="modal">Create</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		{{else}}
+			<div class="nav-item">
+			<a href="/auth/steam" class="btn btn-primary"><span class="fa fa-steam"></span> Steam</a>
+      		        </div>
+		{{/if}}
+                <button class="btn btn-info btn-lg" data-toggle="modal" data-toggle="modal" data-target="#modalChestTracker">
+				    Clash Royale Chests
+			    </button>
+                <div id="modalChestTracker" class="modal fade front" role="dialog">
+				    <div class="modal-dialog">
+					    <div class="modal-content">
+						    <div class="modal-header">
+							    <button type="button" id="close" class="btn btn-default" data-dismiss="modal">&times;</button>
+							    <h4 class="modal-title">List of Upcoming Chests</h4>
+						    </div>
+						    <div calss="modal-body">
+							    <input type="text" id="clashChests" placeholder="Enter the User TAG">
+						    </div>
+						    <div class="modal-footer">
+						    	<button type="button" onclick="createWidget('ChestTracker')" class="btn btn-default" data-dismiss="modal">Create</button>
+						    </div>
+					    </div>
+				    </div>
+		</div>
+                <button class="btn btn-info btn-lg" data-toggle="modal" data-toggle="modal" data-target="#modalClanInfo">
+				    Clash Royale Clan
+			    </button>
+                <div id="modalClanInfo" class="modal fade front" role="dialog">
+				    <div class="modal-dialog">
+					    <div class="modal-content">
+						    <div class="modal-header">
+							    <button type="button" id="close" class="btn btn-default" data-dismiss="modal">&times;</button>
+							    <h4 class="modal-title">Clan's information</h4>
+						    </div>
+						    <div calss="modal-body">
+							    <input type="text" id="clashClan" placeholder="Enter the Clan TAG">
+						    </div>
+						    <div class="modal-footer">
+						    	<button type="button" onclick="createWidget('ClanInfo')" class="btn btn-default" data-dismiss="modal">Create</button>
+						    </div>
+					    </div>
+				    </div>
+		</div>
+		<button class="btn btn-info btn-lg" data-toggle="modal" data-toggle="modal" data-target="#modalCER">
+				    Currency Exchange Rate
+		</button>
+                <div id="modalCER" class="modal fade front" role="dialog">
+				    <div class="modal-dialog">
+					    <div class="modal-content">
+						    <div class="modal-header">
+							    <button type="button" id="close" class="btn btn-default" data-dismiss="modal">&times;</button>
+							    <h4 class="modal-title">Currency Exchange Rate Information</h4>
+						    </div>
+						    <div calss="modal-body">
+							    <input type="text" id="CERFrom" placeholder="From Currency (Physical or Digital/Crypto Currency)">
+						    </div>
+						    <div calss="modal-body">
+							    <input type="text" id="CERTo" placeholder="To Currency (Physical or Digital/Crypto Currency)">
+						    </div>
+						    <div class="modal-footer">
+						    	<button type="button" onclick="createWidget('CER')" class="btn btn-default" data-dismiss="modal">Create</button>
+						    </div>
+					    </div>
+				    </div>
+		</div>
+                <input class="btn btn-info btn-lg" type="button" value="See the Weather" onclick="window.location.href='/api/weatherWidget'"/>
+                <button class="btn btn-info btn-lg" onclick="removeWidgets()"><span >Remove Widgets</span></button>
+		<script type="text/javascript" src="./scripts/requests.js"></script>
+        </li>
+		</ul>
+	</nav>
+	<div class="container-fluid">
+		<br></br>
+		<br></br>
+        	<div class="grid-stack">
+            		<div class="grid-stack-item" data-gs-x="10" data-gs-y="0" data-gs-width="14" data-gs-height="10">
+                		<div class="grid-stack-item-content widget4">
+                		</div>
+            		</div>
+        	</div>
+	</div>
+
+    <script type="text/javascript">
+        function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+            }
+        }
+
+        var options = {
+        };
+        $(function () {
+            $(".grid-stack").gridstack({
+                animate: true,
+                placeholderClass: "grid-stack-placeholder"
+                });
+            $(".widget4").append('<div class="grid-stack-inner grid-stack"></div>');
+        });
+
+	$('document').ready(function() {
+		getWidgets();
+	});
+
+    </script>
+</body>
+</body>
+</html>

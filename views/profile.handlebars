@@ -1,0 +1,76 @@
+<h2 class="page-header" style="color:rgba(238, 110, 115, 0.8)">Your Profile</h2>
+<br>
+<div class="row">
+	<!-- LOCAL INFORMATION -->
+	{{#if user.username}}
+	<div class="col-sm-6">
+		<div class="well">
+			<div class="collection">
+        			<a href="#!" class="collection-item">Local</a>
+				<p>
+					<strong>Name</strong>: {{user.name}} <br>
+					<strong>Username</strong>: {{user.username}}<br>
+					<strong>Email</strong>: {{user.email}}
+				</p>
+		</div>
+	</div>
+	{{/if}}
+
+	<!-- STEAM INFORMATION -->
+	{{#if user.steam.id}}
+        <div class="col-sm-6">
+        	<div class="well">
+                	<div class="collection">
+        			<a href="#!" class="collection-item">Steam</a>
+                		<p>
+                    			<strong>Name</strong>: {{user.steam.displayName}}<br>
+                    			<img src="{{user.steam.photos}}" alt="Your avatar image">
+                		</p>
+            	</div>
+        </div>
+	{{else}}
+	<div class="nav-item">
+	<a href="/auth/steam" class="btn btn-primary"><span class="fa fa-steam"></span> Steam</a>
+        </div>
+	{{/if}}
+
+	<!-- GOOGLE INFORMATION -->
+	{{#if user.google.id}}
+        <div class="col-sm-6">
+        	<div class="well">
+                	<div class="collection">
+        			<a href="#!" class="collection-item">Google</a>
+                		<p>
+                    			<strong>Name</strong>: {{user.google.name}}<br>
+                    			<strong>Email</strong>: {{user.google.email}}
+                		</p>
+            	</div>
+        </div>
+	{{else}}
+	<div class="nav-item">
+	<a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+        </div>
+	{{/if}}
+
+	<!-- GITHUB INFORMATION -->
+	{{#if user.github.id}}
+        <div class="col-sm-6">
+        	<div class="well">
+                	<div class="collection">
+        			<a href="#!" class="collection-item">Github</a>
+                		<p>
+                    			<strong>Username</strong>: {{user.github.username}}<br>
+                    			<strong>Display Name</strong>: {{user.github.displayName}}<br>
+                    			<strong>Email</strong>: {{user.github.email}}<br>
+                    			<strong>Profile</strong>: {{user.github.profile}}<br>
+                    			<img src="{{user.github.photos}}" alt="Your avatar image">
+
+                		</p>
+            	</div>
+        </div>
+	{{else}}
+	<div class="nav-item">
+	<a href="/auth/github" class="btn btn-danger"><span class="fa fa-github"></span> Github</a>
+        </div>
+	{{/if}}
+</div>
